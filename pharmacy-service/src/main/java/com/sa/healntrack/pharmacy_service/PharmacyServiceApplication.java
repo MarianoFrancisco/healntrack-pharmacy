@@ -1,13 +1,13 @@
-package com.sa.healntrack.pharmacy;
+package com.sa.healntrack.pharmacy_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PharmacyApplication {
+public class PharmacyServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PharmacyApplication.class, args);
+		SpringApplication.run(PharmacyServiceApplication.class, args);
 	}
 
 }
