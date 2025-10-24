@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sa.healntrack</groupId>
-    <artifactId>pharmacy</artifactId>
+    <artifactId>pharmacy-service</artifactId>
     <version>1.0.0</version>
-    <name>pharmacy</name>
+    <name>pharmacy-service</name>
     <description>Pharmacy Management</description>
     <properties>
         <java.version>21</java.version>
