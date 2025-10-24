@@ -1,0 +1,49 @@
+server:
+  port: ${SERVER_PORT:8004}
+  shutdown: graceful
+
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: ${SPRING_APP_NAME:pharmacy-service}
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://healntrack-qa.chqgy26sma1e.us-east-2.rds.amazonaws.com:5432/pharmacy_db?sslmode=require}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:healntrack1234}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: ${DB_MAX_POOL:20}
+      minimum-idle: ${DB_MIN_IDLE:5}
+      idle-timeout: ${DB_IDLE_TIMEOUT_MS:30000}
+      connection-timeout: ${DB_CONN_TIMEOUT_MS:30000}
+      max-lifetime: ${DB_MAX_LIFETIME_MS:1800000}
+
+  jackson:
+    property-naming-strategy: LOWER_CAMEL_CASE
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.jdbc.time_zone: UTC
+      hibernate.format_sql: true
+      hibernate.jdbc.lob.non_contextual_creation: true
+
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT:INFO}
+    org.hibernate.SQL: ${LOG_LEVEL_HIBERNATE_SQL:info}
+    org.hibernate.orm.jdbc.bind: ${LOG_LEVEL_HIBERNATE_BIND:info}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_HOSTNAME:localhost}:${EUREKA_PORT:8761}/eureka/
