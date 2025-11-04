@@ -1,0 +1,4 @@
+package com.sa.healntrack.pharmacy_service.catalog.application.port.in.deactivate_medicine;
+
+public record DeactivateMedicineCommand(String code) {
+}
