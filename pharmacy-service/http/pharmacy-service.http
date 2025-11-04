@@ -1,0 +1,149 @@
+@host = localhost
+@port = 8004
+@baseUrl = http://{{host}}:{{port}}
+
+
+# MedicineController
+
+POST {{baseUrl}}/api/v1/catalog/medicines
+Accept: */*
+Content-Type: application/json
+
+{
+  "code": "PCL-0001",
+  "name": "Paracetamol 500mg",
+  "description": "Analgesic and antipyretic. Adult use.",
+  "unitType": "TAB",
+  "minStock": 3,
+  "currentPrice": 12.50,
+  "currentCost": 6.20
+}
+
+###
+
+GET {{baseUrl}}/api/v1/catalog/medicines
+Accept: application/json
+
+###
+
+GET {{baseUrl}}/api/v1/catalog/medicines/PCL-0001
+Accept: application/json
+
+###
+
+PATCH {{baseUrl}}/api/v1/catalog/medicines/PCL-0001
+Accept: */*
+Content-Type: application/json
+
+{
+  "name": "Paracetamol 850mg",
+  "description": "Updated formula for adult use.",
+  "unitType": "TAB",
+  "minStock": 20,
+  "currentPrice": 15.50,
+  "currentCost": 7.80
+}
+
+###
+
+POST {{baseUrl}}/api/v1/catalog/medicines/PCL-0001:activate
+Accept: */*
+Content-Type: application/json
+
+{}
+
+###
+
+POST {{baseUrl}}/api/v1/catalog/medicines/PCL-0001:deactivate
+Accept: */*
+Content-Type: application/json
+
+{}
+
+###
+
+
+# SaleController
+
+GET {{baseUrl}}/api/v1/sales/937b0d52-7d47-4acf-a3e4-89a42d4194be
+Accept: application/json
+
+###
+
+GET {{baseUrl}}/api/v1/sales
+Accept: application/json
+
+###
+
+POST {{baseUrl}}/api/v1/sales/021dfe78-7526-459e-b0ef-0fca81ad4f90:complete
+Accept: */*
+Content-Type: application/json
+
+{}
+
+###
+
+POST {{baseUrl}}/api/v1/sales
+Accept: */*
+Content-Type: application/json
+
+{
+  "sellerId": "d1f8c123-45ab-6789-9abc-def012345678",
+  "items": [
+    {
+      "medicineCode": "PCL-0001",
+      "quantity": 2
+    }
+  ]
+}
+
+
+###
+
+# BatchController
+
+POST {{baseUrl}}/api/v1/inventory/batches
+Accept: */*
+Content-Type: application/json
+
+{
+  "medicineCode": "PCL-0001",
+  "expirationDate": "2026-06-30",
+  "purchasedQuantity": 100,
+  "purchasedBy": "b1a72b47-9d4e-4dcb-8a63-0f2c20bcf002"
+}
+
+###
+
+GET {{baseUrl}}/api/v1/inventory/batches?medicineCode=PCL-0001&onlyWithStock=true&onlyNotExpired=true
+Accept: application/json
+
+###
+
+
+# MonthlyClosingController
+
+POST {{baseUrl}}/api/v1/inventory/monthly-closings/2025/10:create
+Accept: */*
+Content-Type: application/json
+
+{
+  "closedBy": "b4a1a92e-3e9b-4c5c-b7d2-9e2a9b7bfa11",
+  "lines": [
+    {
+      "medicineCode": "PCL-0001",
+      "physicalQty": 296,
+      "note": "Todo bien"
+    }
+  ]
+}
+
+###
+
+
+# StockSnapshotController
+
+GET {{baseUrl}}/api/v1/inventory/stock/PCL-0001
+Accept: application/json
+
+###
