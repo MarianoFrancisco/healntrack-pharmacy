@@ -73,18 +73,18 @@ CREATE TABLE sales
     id          UUID PRIMARY KEY        DEFAULT gen_random_uuid(),
     occurred_at TIMESTAMP      NOT NULL,
     seller_id   UUID           NOT NULL,
-    customer_id UUID,
     status      sale_status    NOT NULL DEFAULT 'OPEN',
     total       NUMERIC(14, 2) NOT NULL CHECK (total >= 0)
 );
 
 CREATE TABLE sale_items
 (
-    id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    sale_id     UUID           NOT NULL REFERENCES sales (id) ON DELETE CASCADE,
-    medicine_id UUID           NOT NULL REFERENCES medicines (id),
-    quantity    INTEGER        NOT NULL CHECK (quantity > 0),
-    unit_price  NUMERIC(14, 2) NOT NULL CHECK (unit_price >= 0),
-    unit_cost   NUMERIC(14, 2) CHECK (unit_cost IS NULL OR unit_cost >= 0),
-    line_total  NUMERIC(14, 2) NOT NULL CHECK (line_total = (quantity::numeric * unit_price))
+    id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    sale_id       UUID           NOT NULL REFERENCES sales (id) ON DELETE CASCADE,
+    medicine_id   UUID           NOT NULL REFERENCES medicines (id),
+    medicine_code VARCHAR(10)    NOT NULL,
+    quantity      INTEGER        NOT NULL CHECK (quantity > 0),
+    unit_price    NUMERIC(14, 2) NOT NULL CHECK (unit_price >= 0),
+    unit_cost     NUMERIC(14, 2) CHECK (unit_cost IS NULL OR unit_cost >= 0),
+    line_total    NUMERIC(14, 2) NOT NULL CHECK (line_total = (quantity::numeric * unit_price))
 );
