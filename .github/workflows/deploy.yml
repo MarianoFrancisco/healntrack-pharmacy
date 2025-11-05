@@ -38,6 +38,7 @@ jobs:
             echo "LOG_LEVEL_HIBERNATE_SQL=${{ secrets.LOG_LEVEL_HIBERNATE_SQL_PROD }}" >> $GITHUB_ENV
             echo "LOG_LEVEL_HIBERNATE_BIND=${{ secrets.LOG_LEVEL_HIBERNATE_BIND_PROD }}" >> $GITHUB_ENV
 
+            echo "PUBLIC_HOST=${{ secrets.PUBLIC_HOST_PROD }}" >> $GITHUB_ENV
           else
             echo "HOST=${{ secrets.GCP_VM_HOST }}" >> $GITHUB_ENV
 
@@ -58,6 +59,8 @@ jobs:
             echo "LOG_LEVEL_ROOT=${{ secrets.LOG_LEVEL_ROOT }}" >> $GITHUB_ENV
             echo "LOG_LEVEL_HIBERNATE_SQL=${{ secrets.LOG_LEVEL_HIBERNATE_SQL }}" >> $GITHUB_ENV
             echo "LOG_LEVEL_HIBERNATE_BIND=${{ secrets.LOG_LEVEL_HIBERNATE_BIND }}" >> $GITHUB_ENV
+
+            echo "PUBLIC_HOST=${{ secrets.PUBLIC_HOST }}" >> $GITHUB_ENV
           fi
 
       - name: Set up SSH
@@ -94,5 +97,6 @@ jobs:
               -e LOG_LEVEL_ROOT="$LOG_LEVEL_ROOT" \
               -e LOG_LEVEL_HIBERNATE_SQL="$LOG_LEVEL_HIBERNATE_SQL" \
               -e LOG_LEVEL_HIBERNATE_BIND="$LOG_LEVEL_HIBERNATE_BIND" \
+              -e PUBLIC_HOST="$PUBLIC_HOST" \
               pharmacy-service
           EOF
