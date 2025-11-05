@@ -9,7 +9,7 @@ spring:
     name: ${SPRING_APP_NAME:pharmacy-service}
 
   datasource:
-    url: ${DB_URL:jdbc:postgresql://healntrack-qa.chqgy26sma1e.us-east-2.rds.amazonaws.com:5432/pharmacy_db?sslmode=require}
+    url: ${DB_URL:jdbc:postgresql://${DB_HOST:healntrack-qa.chqgy26sma1e.us-east-2.rds.amazonaws.com}:${DB_PORT:5432}/${DB_NAME:pharmacy_db}?sslmode=require}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:healntrack1234}
     driver-class-name: org.postgresql.Driver
