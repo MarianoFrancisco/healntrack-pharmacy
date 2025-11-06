@@ -42,7 +42,7 @@ public class BatchEntityMapper {
                 .purchasedQuantity(d.getPurchasedQuantity().value())
                 .quantityOnHand(d.getQuantityOnHand().value())
                 .purchasePrice(d.getPurchasePrice() != null ? d.getPurchasePrice().value() : null)
-                .purchasedBy(d.getPurchasedBy())
+                .purchasedBy(d.getPurchasedBy().value())
                 .createdAt(created)
                 .updatedAt(updated)
                 .build();

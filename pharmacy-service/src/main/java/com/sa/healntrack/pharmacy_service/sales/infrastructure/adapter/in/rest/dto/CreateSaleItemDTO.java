@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record CreateSaleItemDTO(
-
         @NotBlank(message = "El código del medicamento es obligatorio")
         String medicineCode,
 

@@ -4,6 +4,6 @@ import java.util.UUID;
 
 public record BatchId(UUID value) {
     public BatchId {
-        if (value == null) throw new IllegalArgumentException("El id del lote no puede estar vacío");
+        if (value == null) throw new IllegalArgumentException("El identificador del lote no puede estar vacío");
     }
 }

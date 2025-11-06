@@ -1,7 +1,7 @@
 package com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.in.rest.mapper;
 
 import com.sa.healntrack.pharmacy_service.inventory.application.port.in.create_batch.CreateBatchCommand;
-import com.sa.healntrack.pharmacy_service.inventory.application.port.in.get_batches.GetAllBatchesQuery;
+import com.sa.healntrack.pharmacy_service.inventory.application.port.in.get_all_batches.GetAllBatchesQuery;
 import com.sa.healntrack.pharmacy_service.inventory.domain.Batch;
 import com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.in.rest.dto.BatchResponseDTO;
 import com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.in.rest.dto.CreateBatchDTO;
@@ -34,9 +34,11 @@ public class BatchRestMapper {
                 b.getPurchasedQuantity().value(),
                 b.getQuantityOnHand().value(),
                 b.getPurchasePrice() != null ? b.getPurchasePrice().value() : null,
-                b.getPurchasedBy(),
+                b.getPurchasedBy().value(),
                 b.getCreatedAt(),
-                b.getUpdatedAt()
+                b.getUpdatedAt(),
+                b.getMedicine(),
+                b.getEmployee()
         );
     }
 

@@ -1,10 +1,9 @@
 package com.sa.healntrack.pharmacy_service.inventory.domain;
 
 import com.sa.healntrack.pharmacy_service.catalog.domain.value_object.MedicineId;
-import com.sa.healntrack.pharmacy_service.inventory.domain.value_object.BatchId;
-import com.sa.healntrack.pharmacy_service.inventory.domain.value_object.PositiveMoney;
-import com.sa.healntrack.pharmacy_service.inventory.domain.value_object.Quantity;
+import com.sa.healntrack.pharmacy_service.inventory.domain.value_object.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -19,9 +18,13 @@ public class Batch {
     private Quantity purchasedQuantity;
     private Quantity quantityOnHand;
     private PositiveMoney purchasePrice;
-    private UUID purchasedBy;
+    private PurchasedById purchasedBy;
     private long createdAt;
     private long updatedAt;
+    @Setter
+    private BatchMedicine medicine;
+    @Setter
+    private BatchEmployee employee;
 
     public Batch(UUID medicineId, LocalDate expirationDate,
                  Integer purchasedQuantity, BigDecimal purchasePrice, UUID purchasedBy) {
@@ -31,7 +34,7 @@ public class Batch {
         this.purchasedQuantity = Quantity.ofPositive(purchasedQuantity != null ? purchasedQuantity : 0);
         this.quantityOnHand = new Quantity(this.purchasedQuantity.value());
         this.purchasePrice = new PositiveMoney(purchasePrice);
-        this.purchasedBy = purchasedBy;
+        this.purchasedBy = new PurchasedById(purchasedBy);
         long now = Instant.now().toEpochMilli();
         this.createdAt = now;
         this.updatedAt = now;

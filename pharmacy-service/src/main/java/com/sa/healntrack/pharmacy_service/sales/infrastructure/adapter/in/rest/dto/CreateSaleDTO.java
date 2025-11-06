@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 public record CreateSaleDTO(
-
         @NotNull(message = "El identificador del vendedor es obligatorio")
         UUID sellerId,
 
@@ -20,6 +19,5 @@ public record CreateSaleDTO(
 
         @NotEmpty(message = "La lista de items no puede estar vacía")
         List<CreateSaleItemDTO> items
-
 ) {
 }

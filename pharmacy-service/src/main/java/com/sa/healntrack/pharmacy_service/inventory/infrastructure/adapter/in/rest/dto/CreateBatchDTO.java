@@ -2,14 +2,22 @@ package com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.in.r
 
 import jakarta.validation.constraints.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
 public record CreateBatchDTO(
-        @NotBlank String medicineCode,
+        @NotBlank(message = "El código de la medicina es obligatorio")
+        String medicineCode,
+
+        @NotNull(message = "La fecha de expiración es obligatoria")
+        @Future(message = "La fecha de expiración debe ser una fecha futura")
         LocalDate expirationDate,
-        @Min(1) int purchasedQuantity,
+
+        @NotNull(message = "La cantidad comprada es obligatoria")
+        @Min(value = 1, message = "La cantidad comprada debe ser al menos 1")
+        Integer purchasedQuantity,
+
+        @NotNull(message = "El identificador del comprador es obligatorio")
         UUID purchasedBy
 ) {
 }

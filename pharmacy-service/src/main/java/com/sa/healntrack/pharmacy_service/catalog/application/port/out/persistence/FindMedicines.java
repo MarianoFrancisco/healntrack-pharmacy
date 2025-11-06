@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface FindMedicines {
     Optional<Medicine> findByCode(String code);
 
-    List<Medicine> findByCodes(Set<String> code);
+    List<Medicine> findByCodes(Set<String> codes);
 
     boolean existsByCode(String code);
 

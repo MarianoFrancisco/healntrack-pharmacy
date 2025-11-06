@@ -7,7 +7,6 @@ import com.sa.healntrack.pharmacy_service.catalog.application.port.out.persisten
 import com.sa.healntrack.pharmacy_service.catalog.domain.Medicine;
 import com.sa.healntrack.pharmacy_service.inventory.domain.StockSnapshot;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class GetAllMedicinesImpl implements GetAllMedicines {
     private final FindMedicines findMedicines;
     private final InventoryGetAllSnapshots inventoryGetAllSnapshots;

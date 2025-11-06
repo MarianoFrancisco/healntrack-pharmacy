@@ -112,8 +112,13 @@ Content-Type: application/json
   "medicineCode": "PCL-0001",
   "expirationDate": "2026-06-30",
   "purchasedQuantity": 100,
-  "purchasedBy": "b1a72b47-9d4e-4dcb-8a63-0f2c20bcf002"
+  "purchasedBy": "eeb47ea3-94f9-4ab9-97af-e5a31b177dd6"
 }
+###
+
+GET {{baseUrl}}/api/v1/inventory/batches?onlyWithStock=true&onlyNotExpired=true
+Accept: application/json
+
 
 ###
 

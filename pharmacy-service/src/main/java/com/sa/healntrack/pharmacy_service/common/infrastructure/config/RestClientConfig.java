@@ -1,6 +1,6 @@
-package com.sa.healntrack.pharmacy_service.sales.infrastructure.config;
+package com.sa.healntrack.pharmacy_service.common.infrastructure.config;
 
-import com.sa.healntrack.pharmacy_service.sales.infrastructure.config.properties.UrlProperties;
+import com.sa.healntrack.pharmacy_service.common.infrastructure.config.properties.UrlProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +16,13 @@ public class RestClientConfig {
     public RestClient patientRestClient() {
         return RestClient.builder()
                 .baseUrl(urlProperties.patientService())
+                .build();
+    }
+
+    @Bean
+    public RestClient employeeRestClient() {
+        return RestClient.builder()
+                .baseUrl(urlProperties.employeeService())
                 .build();
     }
 }

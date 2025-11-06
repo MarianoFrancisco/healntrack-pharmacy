@@ -1,7 +1,7 @@
 package com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.in.rest.controller;
 
 import com.sa.healntrack.pharmacy_service.inventory.application.port.in.create_batch.CreateBatch;
-import com.sa.healntrack.pharmacy_service.inventory.application.port.in.get_batches.GetAllBatches;
+import com.sa.healntrack.pharmacy_service.inventory.application.port.in.get_all_batches.GetAllBatches;
 import com.sa.healntrack.pharmacy_service.inventory.domain.Batch;
 import com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.in.rest.dto.BatchResponseDTO;
 import com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.in.rest.dto.CreateBatchDTO;
@@ -28,9 +28,11 @@ public class BatchController {
     }
 
     @GetMapping
-    public List<BatchResponseDTO> list(@RequestParam String medicineCode,
-                                       @RequestParam(required = false) Boolean onlyWithStock,
-                                       @RequestParam(required = false) Boolean onlyNotExpired) {
+    public List<BatchResponseDTO> list(
+            @RequestParam(required = false) String medicineCode,
+            @RequestParam(required = false) Boolean onlyWithStock,
+            @RequestParam(required = false) Boolean onlyNotExpired
+    ) {
         List<Batch> result = getAllBatches.handle(
                 BatchRestMapper.toQuery(medicineCode, onlyWithStock, onlyNotExpired)
         );
