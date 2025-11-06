@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -25,8 +26,24 @@ public class MedicineRepository implements FindMedicines, StoreMedicine {
     }
 
     @Override
-    public Optional<Medicine> findById(UUID id) {
-        return jpa.findById(id).map(MedicineEntityMapper::toDomain);
+    public List<Medicine> findByCodes(Set<String> codes) {
+        if (codes == null || codes.isEmpty()) {
+            return List.of();
+        }
+        Set<String> normalized = codes.stream()
+                .filter(Objects::nonNull)
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .map(s -> s.toUpperCase(Locale.ROOT))
+                .collect(Collectors.toSet());
+
+        if (normalized.isEmpty()) {
+            return List.of();
+        }
+
+        return jpa.findByCodeIn(normalized).stream()
+                .map(MedicineEntityMapper::toDomain)
+                .toList();
     }
 
     @Override

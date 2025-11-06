@@ -15,14 +15,6 @@ public record Money(BigDecimal value) {
         return new Money(this.value.add(other.value));
     }
 
-    public Money subtract(Money other) {
-        BigDecimal r = this.value.subtract(other.value);
-        if (r.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Resultado monetario negativo");
-        }
-        return new Money(r);
-    }
-
     public Money multiply(int qty) {
         if (qty < 0) {
             throw new IllegalArgumentException("Cantidad inválida");

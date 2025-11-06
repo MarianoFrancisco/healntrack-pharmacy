@@ -3,10 +3,7 @@ package com.sa.healntrack.pharmacy_service.inventory.application.mapper;
 import com.sa.healntrack.pharmacy_service.catalog.domain.Medicine;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.in.create_batch.CreateBatchCommand;
 import com.sa.healntrack.pharmacy_service.inventory.domain.Batch;
-import com.sa.healntrack.pharmacy_service.inventory.domain.value_object.PositiveMoney;
 import lombok.experimental.UtilityClass;
-
-import java.util.UUID;
 
 @UtilityClass
 public class BatchMapper {

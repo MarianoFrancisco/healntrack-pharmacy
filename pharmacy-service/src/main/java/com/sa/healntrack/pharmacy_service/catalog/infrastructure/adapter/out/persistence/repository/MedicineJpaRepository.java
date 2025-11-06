@@ -8,5 +8,7 @@ import java.util.*;
 public interface MedicineJpaRepository extends JpaRepository<MedicineEntity, java.util.UUID>, JpaSpecificationExecutor<MedicineEntity> {
     Optional<MedicineEntity> findByCode(String code);
 
+    List<MedicineEntity> findByCodeIn(Collection<String> codes);
+
     boolean existsByCode(String code);
 }

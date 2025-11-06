@@ -4,6 +4,7 @@ EXTENSION IF NOT EXISTS "pgcrypto";
 CREATE TYPE medicine_status AS ENUM ('ACTIVE','INACTIVE');
 CREATE TYPE unit_type AS ENUM ('UNIT','TAB','CAP','AMP','VIAL','BOTTLE','BOX');
 CREATE TYPE sale_status AS ENUM ('OPEN','COMPLETED');
+CREATE TYPE buyer_type AS ENUM ('HOSPITALIZATION','PATIENT');
 
 CREATE TABLE medicines
 (
@@ -73,6 +74,8 @@ CREATE TABLE sales
     id          UUID PRIMARY KEY        DEFAULT gen_random_uuid(),
     occurred_at TIMESTAMP      NOT NULL,
     seller_id   UUID           NOT NULL,
+    buyer_id    UUID           NOT NULL,
+    buyer_type  buyer_type     NOT NULL,
     status      sale_status    NOT NULL DEFAULT 'OPEN',
     total       NUMERIC(14, 2) NOT NULL CHECK (total >= 0)
 );

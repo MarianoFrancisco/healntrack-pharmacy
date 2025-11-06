@@ -1,5 +1,6 @@
 package com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.persistence.entity;
 
+import com.sa.healntrack.pharmacy_service.sales.domain.value_object.BuyerType;
 import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,6 +29,14 @@ public class SaleEntity {
 
     @Column(name = "seller_id", nullable = false)
     private UUID sellerId;
+
+    @Column(name = "buyer_id", nullable = false)
+    private UUID buyerId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    private BuyerType buyerType;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

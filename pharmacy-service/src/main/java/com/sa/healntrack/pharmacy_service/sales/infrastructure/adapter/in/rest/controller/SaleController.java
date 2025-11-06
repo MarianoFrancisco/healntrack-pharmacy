@@ -30,13 +30,12 @@ public class SaleController {
     private final GetSaleById getSaleById;
     private final GetAllSales getAllSales;
     private final CompleteSale completeSale;
-    private final SaleRestMapper mapper;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public SaleResponseDTO create(@Valid @RequestBody CreateSaleDTO dto) {
-        Sale saved = createSale.handle(mapper.toCommand(dto));
-        return mapper.toResponse(saved);
+        Sale saved = createSale.handle(SaleRestMapper.toCommand(dto));
+        return SaleRestMapper.toResponse(saved);
     }
 
     @PostMapping("/{id}:complete")
@@ -48,7 +47,7 @@ public class SaleController {
     @GetMapping("/{id}")
     public SaleResponseDTO get(@PathVariable UUID id) {
         Sale s = getSaleById.handle(new GetSaleByIdQuery(id));
-        return mapper.toResponse(s);
+        return SaleRestMapper.toResponse(s);
     }
 
     @GetMapping
@@ -58,6 +57,6 @@ public class SaleController {
                                       @RequestParam(required = false) String status) {
         SaleStatus st = status != null && !status.isBlank() ? SaleStatus.safeValueOf(status) : null;
         return getAllSales.handle(new GetAllSalesQuery(occurredFrom, occurredTo, sellerId, st))
-                .stream().map(mapper::toResponse).collect(Collectors.toList());
+                .stream().map(SaleRestMapper::toResponse).collect(Collectors.toList());
     }
 }
