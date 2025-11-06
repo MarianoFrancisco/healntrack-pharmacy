@@ -42,7 +42,7 @@ public class BatchRepository implements FindBatches, StoreBatch {
                 BatchSpecs.onlyNotExpired(true)
         );
         Sort sort = Sort.by(Sort.Direction.ASC, "createdAt");
-        return jpa.findAll(spec, sort).stream().map(BatchEntityMapper::toDomain).collect(Collectors.toList());
+        return jpa.findAll(spec, sort).stream().map(BatchEntityMapper::toDomain).toList();
     }
 
     @Override

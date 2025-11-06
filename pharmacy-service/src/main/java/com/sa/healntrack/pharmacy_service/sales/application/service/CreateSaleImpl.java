@@ -23,7 +23,6 @@ import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.billi
 import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.integration.catalog.CatalogGetMedicinesByCodesInProcess;
 import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.integration.inventory.InventoryDecreaseStockInProcess;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,7 +38,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
-@Slf4j
 public class CreateSaleImpl implements CreateSale {
 
     private final StoreSale storeSale;

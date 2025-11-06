@@ -27,7 +27,7 @@ public class MedicineRestMapper {
         return new MedicineResponseDTO(
                 m.getId().value(), m.getCode().value(), m.getName(), m.getDescription(),
                 m.getStatus(), m.getUnitType(), m.getMinStock(), m.getCurrentPrice(), m.getCurrentCost(),
-                m.getCreatedAt(), m.getUpdatedAt()
+                m.getCreatedAt(), m.getUpdatedAt(), m.getStock()
         );
     }
 }

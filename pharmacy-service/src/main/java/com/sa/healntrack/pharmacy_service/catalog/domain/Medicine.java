@@ -5,6 +5,7 @@ import com.sa.healntrack.pharmacy_service.catalog.domain.value_object.MedicineId
 import com.sa.healntrack.pharmacy_service.catalog.domain.value_object.MedicineStatus;
 import com.sa.healntrack.pharmacy_service.catalog.domain.value_object.UnitType;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -23,6 +24,8 @@ public class Medicine {
     private BigDecimal currentCost;
     private long createdAt;
     private long updatedAt;
+    @Setter
+    private Integer stock;
 
     public Medicine(
             String code,
