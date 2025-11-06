@@ -17,5 +17,7 @@ public record MedicineResponseDTO(
         BigDecimal currentPrice,
         BigDecimal currentCost,
         long createdAt,
-        long updatedAt
-) {}
+        long updatedAt,
+        Integer stock
+) {
+}

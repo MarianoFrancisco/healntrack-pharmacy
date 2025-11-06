@@ -9,8 +9,8 @@ import com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.out.p
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -21,6 +21,11 @@ public class StockSnapshotRepository implements FindSnapshot, StoreSnapshot {
     @Override
     public Optional<StockSnapshot> findByMedicineId(UUID medicineId) {
         return jpa.findById(medicineId).map(SnapshotEntityMapper::toDomain);
+    }
+
+    @Override
+    public List<StockSnapshot> findAll() {
+        return jpa.findAll().stream().map(SnapshotEntityMapper::toDomain).toList();
     }
 
     @Override
