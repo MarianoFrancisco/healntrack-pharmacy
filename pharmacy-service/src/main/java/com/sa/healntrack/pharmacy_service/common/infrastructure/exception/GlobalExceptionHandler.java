@@ -19,6 +19,24 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(DeserializerException.class)
+    ProblemDetail handleMessageDeserializationException(DeserializerException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
+        problemDetail.setTitle("Deserialization Error");
+        problemDetail.setProperty("error_category", "Deserialization");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(SerializerException.class)
+    ProblemDetail handleMessageSerializationException(SerializerException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
+        problemDetail.setTitle("Serialization Error");
+        problemDetail.setProperty("error_category", "Serialization");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
     @ExceptionHandler(EntityNotFoundException.class)
     ProblemDetail handleEntityNotFound(EntityNotFoundException e) {
         ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());

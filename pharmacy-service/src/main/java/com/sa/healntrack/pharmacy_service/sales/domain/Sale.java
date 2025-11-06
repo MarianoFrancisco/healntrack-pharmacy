@@ -1,9 +1,6 @@
 package com.sa.healntrack.pharmacy_service.sales.domain;
 
-import com.sa.healntrack.pharmacy_service.sales.domain.value_object.Money;
-import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleId;
-import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleStatus;
-import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SellerId;
+import com.sa.healntrack.pharmacy_service.sales.domain.value_object.*;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -18,12 +15,16 @@ public class Sale {
     private SaleId id;
     private long occurredAt;
     private SellerId sellerId;
+    private BuyerId buyerId;
+    private BuyerType buyerType;
     private SaleStatus status;
     private Money total;
     private List<SaleItem> items;
 
     public Sale(Long occurredAt,
                 UUID sellerId,
+                UUID buyerId,
+                String buyerType,
                 String status,
                 BigDecimal total,
                 List<SaleItem> items) {
@@ -33,7 +34,9 @@ public class Sale {
             throw new IllegalArgumentException("La venta debe tener items");
         }
         this.sellerId = new SellerId(sellerId);
-        this.status = SaleStatus.valueOf(status);
+        this.buyerId = new BuyerId(buyerId);
+        this.buyerType = BuyerType.safeValueOf(buyerType);
+        this.status = SaleStatus.safeValueOf(status);
         this.total = new Money(total);
         this.items = new ArrayList<>(items);
     }
@@ -42,11 +45,13 @@ public class Sale {
             UUID id,
             long occurredAt,
             UUID sellerId,
+            UUID buyerId,
+            String buyerType,
             String status,
             BigDecimal total,
             List<SaleItem> items
     ) {
-        Sale s = new Sale(occurredAt, sellerId, status, total, items);
+        Sale s = new Sale(occurredAt, sellerId, buyerId, buyerType, status, total, items);
         s.id = new SaleId(id);
         return s;
     }
@@ -57,4 +62,5 @@ public class Sale {
         }
         this.status = SaleStatus.COMPLETED;
     }
+
 }

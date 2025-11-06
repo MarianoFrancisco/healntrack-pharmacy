@@ -4,7 +4,7 @@ import com.sa.healntrack.pharmacy_service.catalog.application.port.in.activate_m
 import com.sa.healntrack.pharmacy_service.catalog.application.port.in.create_medicine.*;
 import com.sa.healntrack.pharmacy_service.catalog.application.port.in.deactivate_medicine.*;
 import com.sa.healntrack.pharmacy_service.catalog.application.port.in.get_all_medicines.*;
-import com.sa.healntrack.pharmacy_service.catalog.application.port.in.get_medicine_by_id.*;
+import com.sa.healntrack.pharmacy_service.catalog.application.port.in.get_medicine_by_code.*;
 import com.sa.healntrack.pharmacy_service.catalog.application.port.in.update_medicine.*;
 import com.sa.healntrack.pharmacy_service.catalog.domain.Medicine;
 import com.sa.healntrack.pharmacy_service.catalog.infrastructure.adapter.in.rest.dto.*;

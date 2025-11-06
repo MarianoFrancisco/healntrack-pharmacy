@@ -1,8 +1,8 @@
 package com.sa.healntrack.pharmacy_service.catalog.application.service;
 
 import com.sa.healntrack.pharmacy_service.catalog.application.exception.MedicineNotFoundException;
-import com.sa.healntrack.pharmacy_service.catalog.application.port.in.get_medicine_by_id.GetMedicineByCode;
-import com.sa.healntrack.pharmacy_service.catalog.application.port.in.get_medicine_by_id.GetMedicineByCodeQuery;
+import com.sa.healntrack.pharmacy_service.catalog.application.port.in.get_medicine_by_code.GetMedicineByCode;
+import com.sa.healntrack.pharmacy_service.catalog.application.port.in.get_medicine_by_code.GetMedicineByCodeQuery;
 import com.sa.healntrack.pharmacy_service.catalog.application.port.out.persistence.FindMedicines;
 import com.sa.healntrack.pharmacy_service.catalog.domain.Medicine;
 import lombok.RequiredArgsConstructor;

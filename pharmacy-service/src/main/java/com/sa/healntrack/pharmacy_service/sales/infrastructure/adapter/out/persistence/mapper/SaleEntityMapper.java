@@ -38,6 +38,8 @@ public class SaleEntityMapper {
                 e.getId(),
                 occurred,
                 e.getSellerId(),
+                e.getBuyerId(),
+                e.getBuyerType().name(),
                 e.getStatus().name(),
                 e.getGrandTotal(),
                 items
@@ -50,6 +52,8 @@ public class SaleEntityMapper {
                 .id(d.getId() != null ? d.getId().value() : UUID.randomUUID())
                 .occurredAt(occurred)
                 .sellerId(d.getSellerId().value())
+                .buyerId(d.getBuyerId().value())
+                .buyerType(d.getBuyerType())
                 .status(d.getStatus())
                 .grandTotal(d.getTotal().value())
                 .build();

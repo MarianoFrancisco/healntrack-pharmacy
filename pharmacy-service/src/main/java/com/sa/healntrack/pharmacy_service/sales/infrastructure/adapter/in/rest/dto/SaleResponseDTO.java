@@ -10,6 +10,8 @@ public record SaleResponseDTO(
         UUID id,
         long occurredAt,
         UUID sellerId,
+        UUID buyerId,
+        String buyperType,
         SaleStatus status,
         BigDecimal total,
         List<SaleItemResponseDTO> items

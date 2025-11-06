@@ -88,7 +88,9 @@ Accept: */*
 Content-Type: application/json
 
 {
-  "sellerId": "d1f8c123-45ab-6789-9abc-def012345678",
+  "sellerId": "eeb47ea3-94f9-4ab9-97af-e5a31b177dd6",
+  "buyerId": "7439c510-2dff-4fa5-ac18-6974593d0497",
+  "buyerType": "PATIENT",
   "items": [
     {
       "medicineCode": "PCL-0001",
