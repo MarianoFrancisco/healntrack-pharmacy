@@ -15,13 +15,6 @@ public class BatchSpecs {
         return (root, cq, cb) -> cb.equal(root.get("medicineId"), medicineId);
     }
 
-    public static Specification<BatchEntity> byMedicineIds(Collection<UUID> medicineIds) {
-        if (medicineIds == null || medicineIds.isEmpty()) {
-            return (root, cq, cb) -> cb.disjunction();
-        }
-        return (root, cq, cb) -> root.get("medicineId").in(medicineIds);
-    }
-
     public static Specification<BatchEntity> onlyWithStock(Boolean onlyWithStock) {
         if (onlyWithStock == null || !onlyWithStock) {
             return (root, cq, cb) -> cb.conjunction();
