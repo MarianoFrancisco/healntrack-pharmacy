@@ -19,7 +19,6 @@ jobs:
 
           if [ "${GITHUB_REF_NAME}" = "main" ]; then
             echo "HOST=${{ secrets.GCP_VM_HOST_PROD }}" >> $GITHUB_ENV
-
             echo "SERVER_PORT=${{ secrets.SERVER_PORT_PROD }}" >> $GITHUB_ENV
 
             echo "DB_HOST=${{ secrets.DB_HOST_PROD }}" >> $GITHUB_ENV
@@ -39,9 +38,12 @@ jobs:
             echo "LOG_LEVEL_HIBERNATE_BIND=${{ secrets.LOG_LEVEL_HIBERNATE_BIND_PROD }}" >> $GITHUB_ENV
 
             echo "PUBLIC_HOST=${{ secrets.PUBLIC_HOST_PROD }}" >> $GITHUB_ENV
+
+            echo "PATIENT_SERVICE_URL=${{ secrets.PATIENT_SERVICE_URL_PROD }}" >> $GITHUB_ENV
+            echo "HOSPITALIZATION_SERVICE_URL=${{ secrets.HOSPITALIZATION_SERVICE_URL_PROD }}" >> $GITHUB_ENV
+            echo "EMPLOYEE_SERVICE_URL=${{ secrets.EMPLOYEE_SERVICE_URL_PROD }}" >> $GITHUB_ENV
           else
             echo "HOST=${{ secrets.GCP_VM_HOST }}" >> $GITHUB_ENV
-
             echo "SERVER_PORT=${{ secrets.SERVER_PORT }}" >> $GITHUB_ENV
 
             echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
@@ -61,6 +63,10 @@ jobs:
             echo "LOG_LEVEL_HIBERNATE_BIND=${{ secrets.LOG_LEVEL_HIBERNATE_BIND }}" >> $GITHUB_ENV
 
             echo "PUBLIC_HOST=${{ secrets.PUBLIC_HOST }}" >> $GITHUB_ENV
+
+            echo "PATIENT_SERVICE_URL=${{ secrets.PATIENT_SERVICE_URL }}" >> $GITHUB_ENV
+            echo "HOSPITALIZATION_SERVICE_URL=${{ secrets.HOSPITALIZATION_SERVICE_URL }}" >> $GITHUB_ENV
+            echo "EMPLOYEE_SERVICE_URL=${{ secrets.EMPLOYEE_SERVICE_URL }}" >> $GITHUB_ENV
           fi
 
       - name: Set up SSH
@@ -98,5 +104,8 @@ jobs:
               -e LOG_LEVEL_HIBERNATE_SQL="$LOG_LEVEL_HIBERNATE_SQL" \
               -e LOG_LEVEL_HIBERNATE_BIND="$LOG_LEVEL_HIBERNATE_BIND" \
               -e PUBLIC_HOST="$PUBLIC_HOST" \
+              -e PATIENT_SERVICE_URL="$PATIENT_SERVICE_URL" \
+              -e HOSPITALIZATION_SERVICE_URL="$HOSPITALIZATION_SERVICE_URL" \
+              -e EMPLOYEE_SERVICE_URL="$EMPLOYEE_SERVICE_URL" \
               pharmacy-service
           EOF

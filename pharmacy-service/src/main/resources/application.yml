@@ -63,8 +63,9 @@ topics:
     requested: ${TOPIC_BILLING_REQUESTED:billing.requested}
 
 urls:
-  patient-service: ${PATIENT_SERVICE_URL:http://localhost:8200}
-  employee-service: ${EMPLOYEE_SERVICE_URL:http://localhost:8200}
+  patient-service: ${PATIENT_SERVICE_URL:http://localhost:8001}
+  hospitalization-service: ${HOSPITALIZATION_SERVICE_URL:http://localhost:8002}
+  employee-service: ${EMPLOYEE_SERVICE_URL:http://localhost:8005}
 
 logging:
   level:
