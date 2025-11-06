@@ -10,5 +10,7 @@ public interface MedicineJpaRepository extends JpaRepository<MedicineEntity, jav
 
     List<MedicineEntity> findByCodeIn(Collection<String> codes);
 
+    List<MedicineEntity> findByIdIn(Collection<UUID> ids);
+
     boolean existsByCode(String code);
 }

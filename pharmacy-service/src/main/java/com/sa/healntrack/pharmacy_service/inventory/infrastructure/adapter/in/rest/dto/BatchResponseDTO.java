@@ -1,8 +1,10 @@
 package com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.in.rest.dto;
 
+import com.sa.healntrack.pharmacy_service.inventory.domain.value_object.BatchEmployee;
+import com.sa.healntrack.pharmacy_service.inventory.domain.value_object.BatchMedicine;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 public record BatchResponseDTO(
@@ -14,6 +16,8 @@ public record BatchResponseDTO(
         BigDecimal purchasePrice,
         UUID purchasedBy,
         long createdAt,
-        long updatedAt
+        long updatedAt,
+        BatchMedicine medicine,
+        BatchEmployee employee
 ) {
 }

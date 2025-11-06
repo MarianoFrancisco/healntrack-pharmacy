@@ -5,7 +5,7 @@ import java.util.UUID;
 public record MedicineId(UUID value) {
     public MedicineId {
         if (value == null) {
-            throw new IllegalArgumentException("El id de la medicina no puede ser nulo");
+            throw new IllegalArgumentException("El identificador de la medicina no puede ser nulo");
         }
     }
 }

@@ -25,12 +25,12 @@ CREATE TABLE batches
 (
     id                 UUID PRIMARY KEY   DEFAULT gen_random_uuid(),
     medicine_id        UUID      NOT NULL REFERENCES medicines (id),
-    expiration_date    DATE,
+    expiration_date    DATE      NOT NULL,
     purchased_quantity INTEGER   NOT NULL CHECK (purchased_quantity > 0),
     quantity_on_hand   INTEGER   NOT NULL CHECK (quantity_on_hand >= 0),
     purchase_price     NUMERIC(14, 2) CHECK (purchase_price IS NULL OR purchase_price >= 0),
-    purchased_at       TIMESTAMP,
-    purchased_by       UUID,
+    purchased_at       TIMESTAMP NOT NULL DEFAULT now(),
+    purchased_by       UUID      NOT NULL,
     created_at         TIMESTAMP NOT NULL DEFAULT now(),
     updated_at         TIMESTAMP NOT NULL DEFAULT now()
 );

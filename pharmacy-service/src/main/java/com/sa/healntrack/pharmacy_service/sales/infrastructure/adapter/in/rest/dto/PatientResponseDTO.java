@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public record PatientResponseDTO(
-
         UUID id,
         String cui,
         String fullName,

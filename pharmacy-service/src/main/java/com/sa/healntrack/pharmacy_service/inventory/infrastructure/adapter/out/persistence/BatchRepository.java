@@ -1,6 +1,5 @@
 package com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.out.persistence;
 
-import com.sa.healntrack.pharmacy_service.inventory.application.port.in.get_batches.GetAllBatchesQuery;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.out.persistence.batch.FindBatches;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.out.persistence.batch.StoreBatch;
 import com.sa.healntrack.pharmacy_service.inventory.domain.Batch;
@@ -24,9 +23,8 @@ public class BatchRepository implements FindBatches, StoreBatch {
     private final BatchJpaRepository jpa;
 
     @Override
-    public List<Batch> findByMedicine(UUID medicineId, Boolean onlyWithStock, Boolean onlyNotExpired) {
+    public List<Batch> findAll(Boolean onlyWithStock, Boolean onlyNotExpired) {
         Specification<BatchEntity> spec = Specification.allOf(
-                BatchSpecs.byMedicineId(medicineId),
                 BatchSpecs.onlyWithStock(onlyWithStock),
                 BatchSpecs.onlyNotExpired(onlyNotExpired)
         );
