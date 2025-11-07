@@ -7,6 +7,11 @@ import java.math.BigDecimal;
 public record CreateMedicineDTO(
         @NotBlank(message = "El código es obligatorio")
         @Size(max = 10, message = "El código no puede tener más de 10 caracteres")
+        @Pattern(
+                regexp = "^[A-Z]+-[0-9]+$",
+                flags = {jakarta.validation.constraints.Pattern.Flag.CASE_INSENSITIVE},
+                message = "El código debe seguir el formato LETRAS-GUION-NÚMEROS (ej. AMOX-500)"
+        )
         String code,
         @NotBlank(message = "El nombre es obligatorio")
         @Size(max = 120, message = "El nombre no puede tener más de 120 caracteres")

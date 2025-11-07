@@ -4,7 +4,7 @@ public record MedicineCode(String value) {
 
     private static final int MIN_LENGTH = 5;
     private static final int MAX_LENGTH = 10;
-    private static final String VALID_PATTERN = "^[A-Z0-9\\-]+$";
+    private static final String VALID_PATTERN = "^[A-Z]+-[0-9]+$";;
 
     public MedicineCode {
         if (value == null || value.isBlank()) {
