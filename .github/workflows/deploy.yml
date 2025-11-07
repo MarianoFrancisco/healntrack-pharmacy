@@ -82,14 +82,16 @@ jobs:
             cd ./healntrack-pharmacy
             git checkout ${GITHUB_REF_NAME}
             git pull
-            sudo docker build -t pharmacy-service .
 
-            sudo docker stop pharmacy-service || true
-            sudo docker rm pharmacy-service || true
             sudo docker container prune -f || true
             sudo docker image prune -af || true
             sudo docker builder prune -af || true
             sudo docker volume prune -f || true
+
+            sudo docker build -t pharmacy-service .
+
+            sudo docker stop pharmacy-service || true
+            sudo docker rm pharmacy-service || true
 
             sudo docker run -d --name pharmacy-service \
               -p "$SERVER_PORT:$SERVER_PORT" \
