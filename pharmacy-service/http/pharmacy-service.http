@@ -1,5 +1,5 @@
-#@host = localhost
-@host = 35.211.51.90
+@host = localhost
+#@host = 35.211.51.90
 @port = 8004
 @baseUrl = http://{{host}}:{{port}}
 
@@ -136,7 +136,7 @@ Content-Type: application/json
 }
 ###
 
-GET {{baseUrl}}/api/v1/inventory/batches?medicineCode=0002&onlyWithStock=false&onlyNotExpired=false
+GET {{baseUrl}}/api/v1/inventory/batches?onlyNotExpired=true
 Accept: application/json
 
 
