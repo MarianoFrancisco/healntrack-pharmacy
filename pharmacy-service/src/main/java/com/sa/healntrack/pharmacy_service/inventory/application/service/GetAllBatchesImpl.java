@@ -6,7 +6,7 @@ import com.sa.healntrack.pharmacy_service.inventory.application.port.in.get_all_
 import com.sa.healntrack.pharmacy_service.inventory.application.port.out.integration.get_all_medicines.CatalogGetAllMedicines;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.out.integration.get_all_medicines.CatalogGetAllMedicinesQuery;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.out.persistence.batch.FindBatches;
-import com.sa.healntrack.pharmacy_service.inventory.application.port.out.rest.employee.get_all_employees.Employee;
+import com.sa.healntrack.pharmacy_service.inventory.application.port.out.rest.employee.Employee;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.out.rest.employee.get_all_employees.GetAllEmployees;
 import com.sa.healntrack.pharmacy_service.inventory.domain.Batch;
 import com.sa.healntrack.pharmacy_service.inventory.domain.value_object.BatchMedicine;
