@@ -1,5 +1,6 @@
 package com.sa.healntrack.pharmacy_service.common.infrastructure.exception;
 
+import com.sa.healntrack.pharmacy_service.common.application.exception.BusinessException;
 import com.sa.healntrack.pharmacy_service.common.application.exception.DuplicateEntityException;
 import com.sa.healntrack.pharmacy_service.common.application.exception.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
@@ -28,11 +29,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problemDetail;
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    ProblemDetail handleRuntimeException(RuntimeException e) {
+    @ExceptionHandler(BusinessException.class)
+    ProblemDetail handleBusinessException(BusinessException e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         problemDetail.setTitle("Domain");
-        problemDetail.setProperty("error_category", "Runtime");
+        problemDetail.setProperty("error_category", "Business Rule");
         problemDetail.setProperty("timestamp", Instant.now());
         return problemDetail;
     }

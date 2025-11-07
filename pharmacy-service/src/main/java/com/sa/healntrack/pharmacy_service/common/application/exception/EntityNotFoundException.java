@@ -1,6 +1,6 @@
 package com.sa.healntrack.pharmacy_service.common.application.exception;
 
-public class EntityNotFoundException extends RuntimeException {
+public class EntityNotFoundException extends BusinessException {
     public EntityNotFoundException() {
         super("Entidad no encontrada");
     }
