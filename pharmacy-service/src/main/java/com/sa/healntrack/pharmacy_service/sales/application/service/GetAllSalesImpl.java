@@ -42,7 +42,6 @@ public class GetAllSalesImpl implements GetAllSales {
         Map<UUID, Medicine> medicineById = loadMedicines();
         Map<UUID, Patient> patientsById = loadPatients();
         Map<UUID, Hospitalization> hospitalizationsById = loadHospitalizations();
-        Patient buyer;
 
         for (Sale s : sales) {
             Employee seller = employeeById.get(s.getSellerId().value());
@@ -64,7 +63,7 @@ public class GetAllSalesImpl implements GetAllSales {
                 case HOSPITALIZATION -> {
                     Hospitalization h = hospitalizationsById.get(s.getBuyerId().value());
                     if (h != null) {
-                        Patient patient = patientsById.get(h.id());
+                        Patient patient = patientsById.get(h.patientId());
                         setBuyerIfPresent(s, patient);
                     }
                 }

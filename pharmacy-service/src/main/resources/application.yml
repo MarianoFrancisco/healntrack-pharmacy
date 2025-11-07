@@ -61,6 +61,8 @@ topics:
     requested: ${TOPIC_NOTIFICATION_REQUESTED:notification.requested}
   billing:
     requested: ${TOPIC_BILLING_REQUESTED:billing.requested}
+  hospitalization:
+    medication-created: ${TOPIC_PHARMACY_MEDICATION_CREATED:pharmacy.medication-created}
 
 urls:
   patient-service: ${PATIENT_SERVICE_URL:http://localhost:8001}
