@@ -17,20 +17,31 @@ public class BatchSpecs {
     }
 
     public static Specification<BatchEntity> onlyWithStock(Boolean onlyWithStock) {
-        if (onlyWithStock == null || !onlyWithStock) {
+        if (onlyWithStock == null) {
             return (root, cq, cb) -> cb.conjunction();
         }
-        return (root, cq, cb) -> cb.greaterThan(root.get("quantityOnHand"), 0);
+        if (onlyWithStock) {
+            return (root, cq, cb) -> cb.greaterThan(root.get("quantityOnHand"), 0);
+        }
+        return (root, cq, cb) -> cb.equal(root.get("quantityOnHand"), 0);
     }
 
     public static Specification<BatchEntity> onlyNotExpired(Boolean onlyNotExpired) {
         if (onlyNotExpired == null || !onlyNotExpired) {
             return (root, cq, cb) -> cb.conjunction();
         }
-        LocalDate today = LocalDate.now(ZoneOffset.UTC);
+        long startOfTomorrow = startOfTomorrowUtcMillis();
         return (root, cq, cb) -> cb.or(
                 cb.isNull(root.get("expirationDate")),
-                cb.greaterThan(root.get("expirationDate"), today)
+                cb.greaterThanOrEqualTo(root.get("expirationDate"), startOfTomorrow)
         );
+    }
+
+    private static long startOfTomorrowUtcMillis() {
+        return LocalDate.now(ZoneOffset.UTC)
+                .plusDays(1)
+                .atStartOfDay(ZoneOffset.UTC)
+                .toInstant()
+                .toEpochMilli();
     }
 }

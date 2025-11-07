@@ -1,5 +1,5 @@
-@host = localhost
-#@host = 35.211.51.90
+#@host = localhost
+@host = 35.211.51.90
 @port = 8004
 @baseUrl = http://{{host}}:{{port}}
 
