@@ -1,6 +1,9 @@
 package com.sa.healntrack.pharmacy_service.sales.application.service;
 
 import com.sa.healntrack.pharmacy_service.catalog.domain.Medicine;
+import com.sa.healntrack.pharmacy_service.common.application.port.out.kafka.report.publish_purchased_medicine.PublishMedicineSold;
+import com.sa.healntrack.pharmacy_service.common.application.port.out.kafka.report.publish_purchased_medicine.PublishMedicineSoldCommand;
+import com.sa.healntrack.pharmacy_service.common.application.port.out.kafka.report.publish_purchased_medicine.ReportTransactionType;
 import com.sa.healntrack.pharmacy_service.sales.application.mapper.SaleItemMapper;
 import com.sa.healntrack.pharmacy_service.sales.application.mapper.SaleMapper;
 import com.sa.healntrack.pharmacy_service.sales.application.port.in.create_sale.CreateSale;
@@ -29,6 +32,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +52,7 @@ public class CreateSaleImpl implements CreateSale {
     private final GetPatientById getPatientById;
     private final BillPublisher billPublisher;
     private final MedicationPublisher medicationPublisher;
+    private final PublishMedicineSold publishMedicineSold;
 
     @Override
     public Sale handle(CreateSaleCommand command) {
@@ -112,6 +117,19 @@ public class CreateSaleImpl implements CreateSale {
                     sale.getTotal().value()
             ));
         }
+        sale.getItems().forEach(
+                it -> {
+                    publishMedicineSold.publish(
+                            new PublishMedicineSoldCommand(
+                                    it.getMedicineId().value(),
+                                    "PHARMACY",
+                                    LocalDate.now(),
+                                    ReportTransactionType.INCOME,
+                                    it.getLineTotal().value()
+                            )
+                    );
+                }
+        );
         return sale;
     }
 

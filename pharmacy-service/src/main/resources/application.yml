@@ -65,6 +65,10 @@ topics:
     medication-created: ${TOPIC_PHARMACY_MEDICATION_CREATED:pharmacy.medication.created}
   account-payable:
     sale-completed: ${TOPIC_ACCOUNT_PAYABLE_SALE_COMPLETED:accountpayable.closed}
+  report:
+    medicine-created: ${TOPIC_REPORT_MEDICINE_CREATED:pharmacy.medicine.created}
+    medicine-updated: ${TOPIC_REPORT_MEDICINE_UPDATED:pharmacy.medicine.updated}
+    medicine-sold: ${TOPIC_REPORT_MEDICINE_SOLD:pharmacy.medicine.sold}
 
 urls:
   patient-service: ${PATIENT_SERVICE_URL:http://localhost:8001}

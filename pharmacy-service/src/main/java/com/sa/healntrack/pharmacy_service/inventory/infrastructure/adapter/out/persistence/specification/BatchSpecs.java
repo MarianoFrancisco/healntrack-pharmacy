@@ -5,7 +5,6 @@ import lombok.experimental.UtilityClass;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.UUID;
 
 @UtilityClass
