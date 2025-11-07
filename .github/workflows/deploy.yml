@@ -86,6 +86,10 @@ jobs:
 
             sudo docker stop pharmacy-service || true
             sudo docker rm pharmacy-service || true
+            sudo docker container prune -f || true
+            sudo docker image prune -af || true
+            sudo docker builder prune -af || true
+            sudo docker volume prune -f || true
 
             sudo docker run -d --name pharmacy-service \
               -p "$SERVER_PORT:$SERVER_PORT" \
