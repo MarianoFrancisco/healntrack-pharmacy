@@ -13,7 +13,7 @@ public record SaleResponseDTO(
         long occurredAt,
         UUID sellerId,
         UUID buyerId,
-        String buyperType,
+        String buyerType,
         SaleStatus status,
         BigDecimal total,
         List<SaleItemResponseDTO> items,

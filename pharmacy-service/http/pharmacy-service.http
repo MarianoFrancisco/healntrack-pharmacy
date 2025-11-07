@@ -90,7 +90,7 @@ Content-Type: application/json
 
 {
   "sellerId": "eeb47ea3-94f9-4ab9-97af-e5a31b177dd6",
-  "buyerId": "9e00181b-4b2e-467c-816f-c9d2162625b6",
+  "buyerId": "cbdbd1ce-e46c-4f0f-ab57-64f3711ef1e3",
   "buyerType": "HOSPITALIZATION",
   "items": [
     {
