@@ -26,13 +26,23 @@ public class BatchSpecs {
     }
 
     public static Specification<BatchEntity> onlyNotExpired(Boolean onlyNotExpired) {
-        if (onlyNotExpired == null || !onlyNotExpired) {
+        LocalDate today = LocalDate.now();
+
+        if (onlyNotExpired == null) {
             return (root, cq, cb) -> cb.conjunction();
         }
-        LocalDate today = LocalDate.now();
-        return (root, cq, cb) -> cb.or(
-                cb.isNull(root.get("expirationDate")),
-                cb.greaterThan(root.get("expirationDate"), today)
+
+        if (onlyNotExpired) {
+            return (root, cq, cb) -> cb.or(
+                    cb.isNull(root.get("expirationDate")),
+                    cb.greaterThan(root.get("expirationDate"), today)
+            );
+        }
+
+        return (root, cq, cb) -> cb.and(
+                cb.isNotNull(root.get("expirationDate")),
+                cb.lessThanOrEqualTo(root.get("expirationDate"), today)
         );
     }
+
 }
