@@ -27,19 +27,21 @@ public class InventoryEmployeeApi implements GetAllEmployees, GetEmployeesByCode
                 .body(new ParameterizedTypeReference<>() {
                 });
 
-        if (response == null) response = List.of();
-        return EmployeeMapper.toApplication(response);
+        return response == null ? List.of() : EmployeeMapper.toApplication(response);
     }
 
     @Override
     public List<Employee> getByCode() {
         List<EmployeeResponseDTO> response = employeeRestClient.get()
-                .uri("/api/v1/employees/managers?department={code}", "FAR-025")
+
+                .uri(uriBuilder -> uriBuilder
+                        .path("/api/v1/employees/managers")
+                        .queryParam("department", "FAR-025")
+                        .build())
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {
                 });
 
-        if (response == null) response = List.of();
-        return EmployeeMapper.toApplication(response);
+        return response == null ? List.of() : EmployeeMapper.toApplication(response);
     }
 }

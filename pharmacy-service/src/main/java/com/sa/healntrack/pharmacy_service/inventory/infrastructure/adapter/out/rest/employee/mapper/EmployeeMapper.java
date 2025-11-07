@@ -21,11 +21,7 @@ public class EmployeeMapper {
                 response.cui(),
                 response.fullname(),
                 response.email(),
-                new Department(
-                        response.department().name(),
-                        response.department().description(),
-                        response.department().isActive()
-                ),
+                null,
                 response.isActive()
         );
     }
