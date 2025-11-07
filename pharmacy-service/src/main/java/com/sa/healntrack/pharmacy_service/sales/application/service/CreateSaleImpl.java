@@ -56,6 +56,7 @@ public class CreateSaleImpl implements CreateSale {
 
     @Override
     public Sale handle(CreateSaleCommand command) {
+        String service = "";
         PatientById patient = null;
         if (command.buyerType().equals(BuyerType.PATIENT.name())) {
             patient = getPatientById.get(new GetPatientByIdQuery(command.buyerId().toString()));
@@ -107,6 +108,7 @@ public class CreateSaleImpl implements CreateSale {
                     sale,
                     medByCode
             );
+            service = "PHARMACY";
         } else {
             medicationPublisher.publish(new PublishMedicationCreatedCommand(
                     sale.getId().value(),
@@ -116,13 +118,15 @@ public class CreateSaleImpl implements CreateSale {
                             .toLocalDate(),
                     sale.getTotal().value()
             ));
+            service = "MEDICATION";
         }
+        String finalService = service;
         sale.getItems().forEach(
                 it -> {
                     publishMedicineSold.publish(
                             new PublishMedicineSoldCommand(
                                     it.getMedicineId().value(),
-                                    "PHARMACY",
+                                    finalService,
                                     LocalDate.now(),
                                     ReportTransactionType.INCOME,
                                     it.getLineTotal().value()
