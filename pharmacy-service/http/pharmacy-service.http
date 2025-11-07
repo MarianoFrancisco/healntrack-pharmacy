@@ -1,8 +1,18 @@
-@host = localhost
 #@host = 35.211.51.90
+#@port = 8005
+#@host = localhost
+@host = 35.211.51.90
 @port = 8004
 @baseUrl = http://{{host}}:{{port}}
 
+# EmployeeController
+
+###
+
+GET {{baseUrl}}/api/v1/employees/managers?department=FAR-025
+Accept: application/json
+
+###
 
 # MedicineController
 
@@ -11,8 +21,8 @@ Accept: */*
 Content-Type: application/json
 
 {
-  "code": "PCL-0001",
-  "name": "Paracetamol 500mg",
+  "code": "PCL-0011",
+  "name": "Paracetamol 900mg",
   "description": "Analgesic and antipyretic. Adult use.",
   "unitType": "TAB",
   "minStock": 3,
@@ -32,12 +42,12 @@ Accept: application/json
 
 ###
 
-PATCH {{baseUrl}}/api/v1/catalog/medicines/PCL-0001
+PATCH {{baseUrl}}/api/v1/catalog/medicines/PCL-0011
 Accept: */*
 Content-Type: application/json
 
 {
-  "name": "Paracetamol 850mg",
+  "name": "Paracetamol 1850mg",
   "description": "Updated formula for adult use.",
   "unitType": "TAB",
   "minStock": 20,
@@ -89,13 +99,13 @@ Accept: */*
 Content-Type: application/json
 
 {
-  "sellerId": "eeb47ea3-94f9-4ab9-97af-e5a31b177dd6",
+  "sellerId": "910d4bb4-dbcf-4c4b-a972-145a1ec968a0",
   "buyerId": "e6563a9f-96b7-4ccf-b330-83a3366be7ab",
   "buyerType": "PATIENT",
   "items": [
     {
-      "medicineCode": "PCL-0001",
-      "quantity": 2
+      "medicineCode": "PCL-0011",
+      "quantity": 3
     }
   ]
 }
@@ -108,12 +118,12 @@ Accept: */*
 Content-Type: application/json
 
 {
-  "sellerId": "eeb47ea3-94f9-4ab9-97af-e5a31b177dd6",
+  "sellerId": "efaf8b87-e0cf-4b4e-a159-fd9587aa81a4",
   "buyerId": "5261f8bd-dd21-48fc-b206-117dd4b353ec",
   "buyerType": "HOSPITALIZATION",
   "items": [
     {
-      "medicineCode": "PCL-0001",
+      "medicineCode": "PCL-0011",
       "quantity": 2
     }
   ]
@@ -129,9 +139,9 @@ Accept: */*
 Content-Type: application/json
 
 {
-  "medicineCode": "PCL-0001",
+  "medicineCode": "PCL-0011",
   "expirationDate": "2026-06-30",
-  "purchasedQuantity": 100,
+  "purchasedQuantity": 4,
   "purchasedBy": "eeb47ea3-94f9-4ab9-97af-e5a31b177dd6"
 }
 ###
