@@ -33,7 +33,7 @@ public class Sale {
                 String status,
                 BigDecimal total,
                 List<SaleItem> items) {
-
+        this.id = new SaleId(UUID.randomUUID());
         this.occurredAt = occurredAt != null ? occurredAt : Instant.now().toEpochMilli();
         if (items == null || items.isEmpty()) {
             throw new IllegalArgumentException("La venta debe tener items");
