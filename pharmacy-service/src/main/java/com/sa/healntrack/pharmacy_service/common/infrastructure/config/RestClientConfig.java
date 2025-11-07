@@ -20,6 +20,13 @@ public class RestClientConfig {
     }
 
     @Bean
+    public RestClient hospitalizationRestClient() {
+        return RestClient.builder()
+                .baseUrl(urlProperties.hospitalizationService())
+                .build();
+    }
+
+    @Bean
     public RestClient employeeRestClient() {
         return RestClient.builder()
                 .baseUrl(urlProperties.employeeService())

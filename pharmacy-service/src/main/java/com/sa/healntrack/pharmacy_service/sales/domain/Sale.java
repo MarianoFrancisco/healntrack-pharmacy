@@ -2,6 +2,7 @@ package com.sa.healntrack.pharmacy_service.sales.domain;
 
 import com.sa.healntrack.pharmacy_service.sales.domain.value_object.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -20,6 +21,10 @@ public class Sale {
     private SaleStatus status;
     private Money total;
     private List<SaleItem> items;
+    @Setter
+    private SaleSeller seller;
+    @Setter
+    private SaleBuyer buyer;
 
     public Sale(Long occurredAt,
                 UUID sellerId,

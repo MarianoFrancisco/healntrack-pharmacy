@@ -1,6 +1,5 @@
 package com.sa.healntrack.pharmacy_service.inventory.application.service;
 
-import com.sa.healntrack.pharmacy_service.catalog.application.port.out.persistence.FindMedicines;
 import com.sa.healntrack.pharmacy_service.catalog.domain.Medicine;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.in.get_all_batches.GetAllBatches;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.in.get_all_batches.GetAllBatchesQuery;
@@ -25,7 +24,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class GetAllBatchesImpl implements GetAllBatches {
 
-    private final FindMedicines findMedicines;
     private final FindBatches findBatches;
     private final GetAllEmployees getAllEmployees;
     private final CatalogGetAllMedicines getAllMedicines;

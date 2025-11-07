@@ -1,5 +1,7 @@
 package com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.in.rest.dto;
 
+import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleItemMedicine;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -10,6 +12,7 @@ public record SaleItemResponseDTO(
         int quantity,
         BigDecimal unitPrice,
         BigDecimal unitCost,
-        BigDecimal lineTotal
+        BigDecimal lineTotal,
+        SaleItemMedicine medicine
 ) {
 }

@@ -43,7 +43,9 @@ public class SaleRestMapper {
                 s.getBuyerType().name(),
                 s.getStatus(),
                 s.getTotal().value(),
-                lines
+                lines,
+                s.getSeller(),
+                s.getBuyer()
         );
     }
 
@@ -55,7 +57,8 @@ public class SaleRestMapper {
                 it.getQuantity(),
                 it.getUnitPrice().value(),
                 it.getUnitCost() != null ? it.getUnitCost().value() : null,
-                it.getLineTotal().value()
+                it.getLineTotal().value(),
+                it.getMedicine()
         );
     }
 }
