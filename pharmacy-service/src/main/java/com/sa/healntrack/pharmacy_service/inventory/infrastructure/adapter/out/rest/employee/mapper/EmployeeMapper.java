@@ -1,7 +1,7 @@
 package com.sa.healntrack.pharmacy_service.inventory.infrastructure.adapter.out.rest.employee.mapper;
 
-import com.sa.healntrack.pharmacy_service.inventory.application.port.out.rest.employee.get_all_employees.Department;
-import com.sa.healntrack.pharmacy_service.inventory.application.port.out.rest.employee.get_all_employees.Employee;
+import com.sa.healntrack.pharmacy_service.inventory.application.port.out.rest.employee.Department;
+import com.sa.healntrack.pharmacy_service.inventory.application.port.out.rest.employee.Employee;
 import com.sa.healntrack.pharmacy_service.common.infrastructure.adapter.in.rest.dto.EmployeeResponseDTO;
 import lombok.experimental.UtilityClass;
 
