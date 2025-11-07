@@ -1,4 +1,4 @@
-package com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.billing.message.dto;
+package com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.kafka.billing.message.dto;
 
 import java.math.BigDecimal;
 

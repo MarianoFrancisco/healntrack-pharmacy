@@ -108,8 +108,8 @@ Content-Type: application/json
 
 {
   "sellerId": "eeb47ea3-94f9-4ab9-97af-e5a31b177dd6",
-  "buyerId": "7439c510-2dff-4fa5-ac18-6974593d0497",
-  "buyerType": "PATIENT",
+  "buyerId": "5261f8bd-dd21-48fc-b206-117dd4b353ec",
+  "buyerType": "HOSPITALIZATION",
   "items": [
     {
       "medicineCode": "PCL-0001",
