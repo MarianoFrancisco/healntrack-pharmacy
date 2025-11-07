@@ -4,8 +4,13 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 public record CreateMonthlyClosingLineDTO(
-        @NotBlank String medicineCode,
-        @Min(0) Integer physicalQty,
+
+        @NotBlank(message = "El código de la medicina es obligatorio")
+        String medicineCode,
+
+        @Min(value = 0, message = "La cantidad física no puede ser negativa")
+        Integer physicalQty,
+
         String note
 ) {
 }
