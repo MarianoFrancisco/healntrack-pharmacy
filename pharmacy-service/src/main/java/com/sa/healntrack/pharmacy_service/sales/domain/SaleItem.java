@@ -4,7 +4,9 @@ import com.sa.healntrack.pharmacy_service.catalog.domain.value_object.MedicineCo
 import com.sa.healntrack.pharmacy_service.catalog.domain.value_object.MedicineId;
 import com.sa.healntrack.pharmacy_service.sales.domain.value_object.Money;
 import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleItemId;
+import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleItemMedicine;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -18,6 +20,8 @@ public class SaleItem {
     private Money unitPrice;
     private Money unitCost;
     private Money lineTotal;
+    @Setter
+    private SaleItemMedicine medicine;
 
     public SaleItem(UUID medicineId, String medicineCode, int quantity, BigDecimal unitPrice, BigDecimal unitCost) {
         this.medicineId = new MedicineId(medicineId);

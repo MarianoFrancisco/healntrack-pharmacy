@@ -1,6 +1,5 @@
 package com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.in.rest.controller;
 
-import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleStatus;
 import com.sa.healntrack.pharmacy_service.sales.application.port.in.complete_sale.CompleteSale;
 import com.sa.healntrack.pharmacy_service.sales.application.port.in.complete_sale.CompleteSaleCommand;
 import com.sa.healntrack.pharmacy_service.sales.application.port.in.create_sale.CreateSale;
@@ -51,12 +50,13 @@ public class SaleController {
     }
 
     @GetMapping
-    public List<SaleResponseDTO> list(@RequestParam(required = false) Long occurredFrom,
-                                      @RequestParam(required = false) Long occurredTo,
-                                      @RequestParam(required = false) UUID sellerId,
-                                      @RequestParam(required = false) String status) {
-        SaleStatus st = status != null && !status.isBlank() ? SaleStatus.safeValueOf(status) : null;
-        return getAllSales.handle(new GetAllSalesQuery(occurredFrom, occurredTo, sellerId, st))
+    public List<SaleResponseDTO> list(
+            @RequestParam(required = false) Long occurredFrom,
+            @RequestParam(required = false) Long occurredTo,
+            @RequestParam(required = false) UUID sellerId,
+            @RequestParam(required = false) String status
+    ) {
+        return getAllSales.handle(new GetAllSalesQuery(occurredFrom, occurredTo, sellerId, status))
                 .stream().map(SaleRestMapper::toResponse).collect(Collectors.toList());
     }
 }

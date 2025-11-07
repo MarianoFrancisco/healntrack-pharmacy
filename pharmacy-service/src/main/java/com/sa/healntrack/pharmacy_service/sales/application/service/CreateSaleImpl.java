@@ -12,7 +12,7 @@ import com.sa.healntrack.pharmacy_service.sales.application.port.out.kafka.billi
 import com.sa.healntrack.pharmacy_service.sales.application.port.out.rest.patient.get_patient_by_id.GetPatientById;
 import com.sa.healntrack.pharmacy_service.sales.application.port.out.persistence.StoreSale;
 import com.sa.healntrack.pharmacy_service.sales.application.port.out.rest.patient.get_patient_by_id.GetPatientByIdQuery;
-import com.sa.healntrack.pharmacy_service.sales.application.port.out.rest.patient.get_patient_by_id.Patient;
+import com.sa.healntrack.pharmacy_service.sales.application.port.out.rest.patient.get_patient_by_id.PatientById;
 import com.sa.healntrack.pharmacy_service.sales.domain.Sale;
 import com.sa.healntrack.pharmacy_service.sales.domain.SaleItem;
 import com.sa.healntrack.pharmacy_service.sales.application.port.in.create_sale.Item;
@@ -48,7 +48,7 @@ public class CreateSaleImpl implements CreateSale {
 
     @Override
     public Sale handle(CreateSaleCommand command) {
-        Patient patient = null;
+        PatientById patient = null;
         if (command.buyerType().equals(BuyerType.PATIENT.name())) {
             patient = getPatientById.get(new GetPatientByIdQuery(command.buyerId().toString()));
             if (patient == null) {
@@ -103,7 +103,7 @@ public class CreateSaleImpl implements CreateSale {
         return sale;
     }
 
-    private void sendBill(Patient info, Sale sale, Map<String, Medicine> medByCode) {
+    private void sendBill(PatientById info, Sale sale, Map<String, Medicine> medByCode) {
         String subject = "Confirmación de compra";
         String title = "Factura de Compra - HealnTrack";
         String description = "Gracias por su compra en HealnTrack. Adjuntamos su factura detallada.";

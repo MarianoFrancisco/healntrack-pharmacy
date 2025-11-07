@@ -11,9 +11,10 @@ import org.springframework.web.client.RestClient;
 
 import java.util.List;
 
+
 @Component
 @RequiredArgsConstructor
-public class EmployeeApi implements GetAllEmployees {
+public class InventoryEmployeeApi implements GetAllEmployees {
 
     private final RestClient employeeRestClient;
 

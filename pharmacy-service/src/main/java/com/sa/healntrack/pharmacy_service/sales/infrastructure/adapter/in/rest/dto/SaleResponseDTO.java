@@ -1,5 +1,7 @@
 package com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.in.rest.dto;
 
+import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleBuyer;
+import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleSeller;
 import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleStatus;
 
 import java.math.BigDecimal;
@@ -14,6 +16,8 @@ public record SaleResponseDTO(
         String buyperType,
         SaleStatus status,
         BigDecimal total,
-        List<SaleItemResponseDTO> items
+        List<SaleItemResponseDTO> items,
+        SaleSeller seller,
+        SaleBuyer buyer
 ) {
 }
