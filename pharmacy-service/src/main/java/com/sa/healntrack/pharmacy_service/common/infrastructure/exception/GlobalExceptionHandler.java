@@ -28,6 +28,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problemDetail;
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    ProblemDetail handleRuntimeException(RuntimeException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+        problemDetail.setTitle("Domain");
+        problemDetail.setProperty("error_category", "Runtime");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
     @ExceptionHandler(SerializerException.class)
     ProblemDetail handleMessageSerializationException(SerializerException e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
