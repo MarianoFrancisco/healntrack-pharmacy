@@ -1,0 +1,186 @@
+#@host = 35.211.51.90
+#@port = 8005
+#@host = localhost
+@host = 35.211.51.90
+@port = 8004
+@baseUrl = http://{{host}}:{{port}}
+
+# EmployeeController
+
+###
+
+GET {{baseUrl}}/api/v1/employees/managers?department=FAR-025
+Accept: application/json
+
+###
+
+# MedicineController
+
+POST {{baseUrl}}/api/v1/catalog/medicines
+Accept: */*
+Content-Type: application/json
+
+{
+  "code": "PCL-0011",
+  "name": "Paracetamol 900mg",
+  "description": "Analgesic and antipyretic. Adult use.",
+  "unitType": "TAB",
+  "minStock": 3,
+  "currentPrice": 12.50,
+  "currentCost": 6.20
+}
+
+###
+
+GET {{baseUrl}}/api/v1/catalog/medicines
+Accept: application/json
+
+###
+
+GET {{baseUrl}}/api/v1/catalog/medicines/PCL-0001
+Accept: application/json
+
+###
+
+PATCH {{baseUrl}}/api/v1/catalog/medicines/PCL-0011
+Accept: */*
+Content-Type: application/json
+
+{
+  "name": "Paracetamol 1850mg",
+  "description": "Updated formula for adult use.",
+  "unitType": "TAB",
+  "minStock": 20,
+  "currentPrice": 15.50,
+  "currentCost": 7.80
+}
+
+###
+
+POST {{baseUrl}}/api/v1/catalog/medicines/PCL-0001:activate
+Accept: */*
+Content-Type: application/json
+
+{}
+
+###
+
+POST {{baseUrl}}/api/v1/catalog/medicines/PCL-0001:deactivate
+Accept: */*
+Content-Type: application/json
+
+{}
+
+###
+
+
+# SaleController
+
+GET {{baseUrl}}/api/v1/sales/56bbd2d1-a86f-405d-b58d-572901aab876
+Accept: application/json
+
+###
+
+GET {{baseUrl}}/api/v1/sales
+Accept: application/json
+
+###
+
+POST {{baseUrl}}/api/v1/sales/021dfe78-7526-459e-b0ef-0fca81ad4f90:complete
+Accept: */*
+Content-Type: application/json
+
+{}
+
+###
+
+POST {{baseUrl}}/api/v1/sales
+Accept: */*
+Content-Type: application/json
+
+{
+  "sellerId": "910d4bb4-dbcf-4c4b-a972-145a1ec968a0",
+  "buyerId": "e6563a9f-96b7-4ccf-b330-83a3366be7ab",
+  "buyerType": "PATIENT",
+  "items": [
+    {
+      "medicineCode": "PCL-0011",
+      "quantity": 3
+    }
+  ]
+}
+
+
+###
+
+POST {{baseUrl}}/api/v1/sales
+Accept: */*
+Content-Type: application/json
+
+{
+  "sellerId": "efaf8b87-e0cf-4b4e-a159-fd9587aa81a4",
+  "buyerId": "5261f8bd-dd21-48fc-b206-117dd4b353ec",
+  "buyerType": "HOSPITALIZATION",
+  "items": [
+    {
+      "medicineCode": "PCL-0011",
+      "quantity": 2
+    }
+  ]
+}
+
+
+###
+
+# BatchController
+
+POST {{baseUrl}}/api/v1/inventory/batches
+Accept: */*
+Content-Type: application/json
+
+{
+  "medicineCode": "PCL-0011",
+  "expirationDate": "2026-06-30",
+  "purchasedQuantity": 4,
+  "purchasedBy": "eeb47ea3-94f9-4ab9-97af-e5a31b177dd6"
+}
+###
+
+GET {{baseUrl}}/api/v1/inventory/batches?onlyNotExpired=true
+Accept: application/json
+
+
+###
+
+GET {{baseUrl}}/api/v1/inventory/batches?medicineCode=PCL-0001&onlyWithStock=true&onlyNotExpired=true
+Accept: application/json
+
+###
+
+
+# MonthlyClosingController
+
+POST {{baseUrl}}/api/v1/inventory/monthly-closings/2025/10:create
+Accept: */*
+Content-Type: application/json
+
+{
+  "closedBy": "b4a1a92e-3e9b-4c5c-b7d2-9e2a9b7bfa11",
+  "lines": [
+    {
+      "medicineCode": "PCL-0001",
+      "physicalQty": 296,
+      "note": "Todo bien"
+    }
+  ]
+}
+
+###
+
+
+# StockSnapshotController
+
+GET {{baseUrl}}/api/v1/inventory/stock/PCL-0001
+Accept: application/json
+
+###
