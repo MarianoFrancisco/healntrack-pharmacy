@@ -54,10 +54,6 @@ public class Batch {
         return b;
     }
 
-    public boolean isExpired(LocalDate today) {
-        return expirationDate != null && expirationDate.isBefore(today.plusDays(1));
-    }
-
     public int consume(int qty) {
         Quantity toConsume = Quantity.ofPositive(qty);
         if (toConsume.value() > this.quantityOnHand.value()) {

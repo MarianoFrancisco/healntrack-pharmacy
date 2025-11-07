@@ -3,8 +3,8 @@ package com.sa.healntrack.pharmacy_service.inventory.application.service;
 import com.sa.healntrack.pharmacy_service.catalog.application.exception.MedicineNotFoundException;
 import com.sa.healntrack.pharmacy_service.catalog.application.port.out.persistence.FindMedicines;
 import com.sa.healntrack.pharmacy_service.catalog.domain.Medicine;
-import com.sa.healntrack.pharmacy_service.common.application.port.out.publish_notification_created.PublishNotificationCreatedCommand;
-import com.sa.healntrack.pharmacy_service.common.infrastructure.adapter.out.kafka.notification.NotificationPublisher;
+import com.sa.healntrack.pharmacy_service.common.application.port.out.kafka.notification.publish_notification_created.PublishNotificationCreated;
+import com.sa.healntrack.pharmacy_service.common.application.port.out.kafka.notification.publish_notification_created.PublishNotificationCreatedCommand;
 import com.sa.healntrack.pharmacy_service.inventory.application.exception.InsufficientStockException;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.in.decrease_stock.DecreaseStock;
 import com.sa.healntrack.pharmacy_service.inventory.application.port.in.decrease_stock.DecreaseStockCommand;
@@ -33,7 +33,7 @@ public class DecreaseStockImpl implements DecreaseStock {
     private final StoreSnapshot storeSnapshot;
     private final FindBatches findBatches;
     private final StoreBatch storeBatch;
-    private final NotificationPublisher notificationPublisher;
+    private final PublishNotificationCreated publishNotificationCreated;
     private final GetEmployeesByCode getEmployeesByCode;
 
     @Override
@@ -111,7 +111,7 @@ public class DecreaseStockImpl implements DecreaseStock {
     }
 
     private void publishNotification(Medicine medicine, Employee employee, int available) {
-        notificationPublisher.publish(
+        publishNotificationCreated.publish(
                 new PublishNotificationCreatedCommand(
                         UUID.randomUUID().toString(),
                         employee.email(),

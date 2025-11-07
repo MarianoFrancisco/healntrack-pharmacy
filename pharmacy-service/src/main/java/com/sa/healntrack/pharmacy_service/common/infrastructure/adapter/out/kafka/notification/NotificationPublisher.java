@@ -2,8 +2,8 @@ package com.sa.healntrack.pharmacy_service.common.infrastructure.adapter.out.kaf
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sa.healntrack.pharmacy_service.common.application.port.out.publish_notification_created.PublishNotificationCreated;
-import com.sa.healntrack.pharmacy_service.common.application.port.out.publish_notification_created.PublishNotificationCreatedCommand;
+import com.sa.healntrack.pharmacy_service.common.application.port.out.kafka.notification.publish_notification_created.PublishNotificationCreated;
+import com.sa.healntrack.pharmacy_service.common.application.port.out.kafka.notification.publish_notification_created.PublishNotificationCreatedCommand;
 import com.sa.healntrack.pharmacy_service.common.infrastructure.adapter.out.kafka.notification.mapper.NotificationMapper;
 import com.sa.healntrack.pharmacy_service.common.infrastructure.adapter.out.kafka.notification.message.NotificationRequestedMessage;
 import com.sa.healntrack.pharmacy_service.common.infrastructure.config.properties.TopicsProperties;

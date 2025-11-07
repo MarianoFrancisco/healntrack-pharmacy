@@ -20,7 +20,7 @@ public class MedicineMapper {
         );
     }
 
-    public Medicine updateDomain(Medicine existing, UpdateMedicineCommand command) {
+    public void updateDomain(Medicine existing, UpdateMedicineCommand command) {
         existing.updateCatalogInfo(
                 command.name(),
                 command.description(),
@@ -29,6 +29,5 @@ public class MedicineMapper {
                 command.currentPrice(),
                 command.currentCost()
         );
-        return existing;
     }
 }

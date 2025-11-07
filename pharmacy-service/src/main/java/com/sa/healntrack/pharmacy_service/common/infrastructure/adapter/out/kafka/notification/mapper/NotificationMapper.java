@@ -1,6 +1,6 @@
 package com.sa.healntrack.pharmacy_service.common.infrastructure.adapter.out.kafka.notification.mapper;
 
-import com.sa.healntrack.pharmacy_service.common.application.port.out.publish_notification_created.PublishNotificationCreatedCommand;
+import com.sa.healntrack.pharmacy_service.common.application.port.out.kafka.notification.publish_notification_created.PublishNotificationCreatedCommand;
 import com.sa.healntrack.pharmacy_service.common.infrastructure.adapter.out.kafka.notification.message.NotificationRequestedMessage;
 import lombok.experimental.UtilityClass;
 

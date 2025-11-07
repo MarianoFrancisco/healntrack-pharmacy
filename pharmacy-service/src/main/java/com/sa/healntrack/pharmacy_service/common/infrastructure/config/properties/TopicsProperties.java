@@ -8,6 +8,7 @@ public record TopicsProperties(
         NotificationProperties notification,
         BillingProperties billing,
         HospitalizationProperties hospitalization,
-        AccountPayableProperties accountPayable
+        AccountPayableProperties accountPayable,
+        ReportProperties report
 ) {
 }
