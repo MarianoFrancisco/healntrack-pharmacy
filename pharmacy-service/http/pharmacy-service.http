@@ -1,5 +1,5 @@
-#@host = localhost
-@host = 35.211.51.90
+@host = localhost
+#@host = 35.211.51.90
 @port = 8004
 @baseUrl = http://{{host}}:{{port}}
 
@@ -66,7 +66,7 @@ Content-Type: application/json
 
 # SaleController
 
-GET {{baseUrl}}/api/v1/sales/937b0d52-7d47-4acf-a3e4-89a42d4194be
+GET {{baseUrl}}/api/v1/sales/56bbd2d1-a86f-405d-b58d-572901aab876
 Accept: application/json
 
 ###
@@ -90,8 +90,8 @@ Content-Type: application/json
 
 {
   "sellerId": "eeb47ea3-94f9-4ab9-97af-e5a31b177dd6",
-  "buyerId": "cbdbd1ce-e46c-4f0f-ab57-64f3711ef1e3",
-  "buyerType": "HOSPITALIZATION",
+  "buyerId": "e6563a9f-96b7-4ccf-b330-83a3366be7ab",
+  "buyerType": "PATIENT",
   "items": [
     {
       "medicineCode": "PCL-0001",
@@ -136,7 +136,7 @@ Content-Type: application/json
 }
 ###
 
-GET {{baseUrl}}/api/v1/inventory/batches?onlyWithStock=true&onlyNotExpired=true
+GET {{baseUrl}}/api/v1/inventory/batches?medicineCode=0002&onlyWithStock=false&onlyNotExpired=false
 Accept: application/json
 
 

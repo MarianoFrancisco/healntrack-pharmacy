@@ -63,7 +63,7 @@ public class GetAllBatchesImpl implements GetAllBatches {
 
         Set<UUID> allowedMedicineIds = medicineById.values().stream()
                 .filter(m -> m.getCode().value() != null &&
-                        m.getCode().value().toUpperCase().startsWith(prefix))
+                        m.getCode().value().toUpperCase().contains(prefix))
                 .map(m -> m.getId().value())
                 .collect(Collectors.toSet());
 

@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -26,10 +27,10 @@ public class BatchSpecs {
         if (onlyNotExpired == null || !onlyNotExpired) {
             return (root, cq, cb) -> cb.conjunction();
         }
-        LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.now(ZoneOffset.UTC);
         return (root, cq, cb) -> cb.or(
                 cb.isNull(root.get("expirationDate")),
-                cb.greaterThanOrEqualTo(root.get("expirationDate"), today)
+                cb.greaterThan(root.get("expirationDate"), today)
         );
     }
 }
