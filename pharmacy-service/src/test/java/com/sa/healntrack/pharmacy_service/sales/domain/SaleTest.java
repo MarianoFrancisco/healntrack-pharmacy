@@ -1,7 +1,6 @@
 package com.sa.healntrack.pharmacy_service.sales.domain;
 
 import com.sa.healntrack.pharmacy_service.sales.domain.value_object.SaleStatus;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -10,31 +9,27 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("Sale")
 class SaleTest {
 
+    private static final UUID SELLER = UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
+    private static final UUID BUYER = UUID.fromString("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb");
+    private static final UUID SALE_ID = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
+    private static final UUID ITEM_ID = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
+
     @Test
-    @DisplayName("debe tener items")
     void must_have_items() {
         assertThatThrownBy(() -> new Sale(
-                1L,
-                UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                UUID.fromString("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"),
+                System.currentTimeMillis(),
+                SELLER, BUYER,
                 "PATIENT", "PENDING", BigDecimal.TEN, List.of()
         )).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("debe tener items");
     }
 
     @Test
-    @DisplayName("complete cambia a COMPLETED y evita duplicado")
     void complete_changes_status_to_completed_and_prevents_duplicate_complete() {
-        SaleItem item = new SaleItem(
-                UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc"),
-                "XXXX-1123", 1, new BigDecimal("5.00"), new BigDecimal("2.00")
-        );
-        Sale s = new Sale(1L,
-                UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                UUID.fromString("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"),
+        SaleItem item = new SaleItem(ITEM_ID, "XXXX-1123", 1, new BigDecimal("5.00"), new BigDecimal("2.00"));
+        Sale s = new Sale(System.currentTimeMillis(), SELLER, BUYER,
                 "PATIENT", "OPEN", new BigDecimal("5.00"), List.of(item));
 
         s.complete();
@@ -46,18 +41,11 @@ class SaleTest {
     }
 
     @Test
-    @DisplayName("restore setea id y conserva valores")
     void restore_sets_id_and_keeps_values() {
-        UUID id = UUID.fromString("11111111-2222-3333-4444-555555555555");
-        SaleItem item = new SaleItem(
-                UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd"),
-                "XXXX-1234", 2, new BigDecimal("3.00"), new BigDecimal("1.00")
-        );
-        var restored = Sale.restore(id, 2L,
-                UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                UUID.fromString("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"),
+        SaleItem item = new SaleItem(ITEM_ID, "XXXX-1234", 2, new BigDecimal("3.00"), new BigDecimal("1.00"));
+        Sale restored = Sale.restore(SALE_ID, System.currentTimeMillis(), SELLER, BUYER,
                 "PATIENT", "COMPLETED", new BigDecimal("6.00"), List.of(item));
-        assertThat(restored.getId().value()).isEqualTo(id);
+        assertThat(restored.getId().value()).isEqualTo(SALE_ID);
         assertThat(restored.getItems()).hasSize(1);
     }
 }

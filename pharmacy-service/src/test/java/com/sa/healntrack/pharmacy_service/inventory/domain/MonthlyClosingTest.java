@@ -1,46 +1,38 @@
 package com.sa.healntrack.pharmacy_service.inventory.domain;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("MonthlyClosing")
 class MonthlyClosingTest {
 
-    @Test
-    @DisplayName("constructor setea campos y timestamp now")
-    void constructor_sets_fields_and_now_timestamp() {
-        UUID closedBy = UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
-        MonthlyClosing c = new MonthlyClosing(2025, 10, closedBy);
+    private static final UUID ID = UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
+    private static final UUID CLOSED_BY = UUID.fromString("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb");
 
+    @Test
+    void constructor_sets_fields_and_now_timestamp() {
+        MonthlyClosing c = new MonthlyClosing(2025, 10, CLOSED_BY);
         assertThat(c.getYear()).isEqualTo(2025);
         assertThat(c.getMonth()).isEqualTo(10);
-        assertThat(c.getClosedBy().value()).isEqualTo(closedBy);
+        assertThat(c.getClosedBy().value()).isEqualTo(CLOSED_BY);
         assertThat(c.getClosedAt()).isPositive();
     }
 
     @Test
-    @DisplayName("restore conserva valores y valida periodo")
     void restore_keeps_values_and_validates_period() {
-        UUID id = UUID.fromString("11111111-2222-3333-4444-555555555555");
-        UUID closedBy = UUID.fromString("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb");
         long ts = 123456L;
-
-        MonthlyClosing c = MonthlyClosing.restore(id, 2024, 12, closedBy, ts);
-
-        assertThat(c.getId().value()).isEqualTo(id);
+        MonthlyClosing c = MonthlyClosing.restore(ID, 2024, 12, CLOSED_BY, ts);
+        assertThat(c.getId().value()).isEqualTo(ID);
         assertThat(c.getClosedAt()).isEqualTo(ts);
     }
 
     @Test
-    @DisplayName("mes o año inválidos lanzan")
     void invalid_month_or_year_throw() {
-        assertThatThrownBy(() -> new MonthlyClosing(2025, 0, UUID.randomUUID()))
+        assertThatThrownBy(() -> new MonthlyClosing(2025, 0, CLOSED_BY))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("Mes inválido");
-        assertThatThrownBy(() -> new MonthlyClosing(1999, 12, UUID.randomUUID()))
+        assertThatThrownBy(() -> new MonthlyClosing(1999, 12, CLOSED_BY))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("Año inválido");
     }
 }
