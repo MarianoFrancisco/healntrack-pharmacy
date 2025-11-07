@@ -62,7 +62,9 @@ topics:
   billing:
     requested: ${TOPIC_BILLING_REQUESTED:billing.requested}
   hospitalization:
-    medication-created: ${TOPIC_PHARMACY_MEDICATION_CREATED:pharmacy.medication-created}
+    medication-created: ${TOPIC_PHARMACY_MEDICATION_CREATED:pharmacy.medication.created}
+  account-payable:
+    sale-completed: ${TOPIC_ACCOUNT_PAYABLE_SALE_COMPLETED:accountpayable.closed}
 
 urls:
   patient-service: ${PATIENT_SERVICE_URL:http://localhost:8001}

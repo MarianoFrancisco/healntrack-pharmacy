@@ -7,6 +7,7 @@ public record TopicsProperties(
         PharmacyProperties pharmacy,
         NotificationProperties notification,
         BillingProperties billing,
-        HospitalizationProperties hospitalization
+        HospitalizationProperties hospitalization,
+        AccountPayableProperties accountPayable
 ) {
 }

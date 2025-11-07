@@ -6,7 +6,7 @@ import com.sa.healntrack.pharmacy_service.common.infrastructure.config.propertie
 import com.sa.healntrack.pharmacy_service.common.infrastructure.exception.SerializerException;
 import com.sa.healntrack.pharmacy_service.sales.application.port.out.kafka.hospitalization.publish_medication_created.PublishMedicationCreated;
 import com.sa.healntrack.pharmacy_service.sales.application.port.out.kafka.hospitalization.publish_medication_created.PublishMedicationCreatedCommand;
-import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.kafka.hospitalization.mappers.MedicationMapper;
+import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.kafka.hospitalization.mappers.MedicationCreatedMapper;
 import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.kafka.hospitalization.message.MedicationCreatedMessage;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -23,7 +23,7 @@ public class MedicationPublisher implements PublishMedicationCreated {
 
     @Override
     public void publish(PublishMedicationCreatedCommand cmd) {
-        MedicationCreatedMessage medicationCreatedMessage = MedicationMapper.toMessage(cmd);
+        MedicationCreatedMessage medicationCreatedMessage = MedicationCreatedMapper.toMessage(cmd);
         try {
             byte[] eventBytes = objectMapper.writeValueAsBytes(medicationCreatedMessage);
 
