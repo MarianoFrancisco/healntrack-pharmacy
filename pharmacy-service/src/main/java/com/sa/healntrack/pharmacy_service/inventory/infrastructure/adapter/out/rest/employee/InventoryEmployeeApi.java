@@ -35,7 +35,7 @@ public class InventoryEmployeeApi implements GetAllEmployees, GetEmployeesByCode
         List<EmployeeResponseDTO> response = employeeRestClient.get()
 
                 .uri(uriBuilder -> uriBuilder
-                        .path("/api/v1/employees/managers")
+                        .path("/api/v1/employees")
                         .queryParam("department", "FAR-025")
                         .build())
                 .retrieve()
