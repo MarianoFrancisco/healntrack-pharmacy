@@ -6,7 +6,7 @@ import com.sa.healntrack.pharmacy_service.common.infrastructure.config.propertie
 import com.sa.healntrack.pharmacy_service.common.infrastructure.exception.SerializerException;
 import com.sa.healntrack.pharmacy_service.sales.application.port.out.kafka.billing.publish_bill_created.PublishBillCreated;
 import com.sa.healntrack.pharmacy_service.sales.application.port.out.kafka.billing.publish_bill_created.PublishBillCreatedCommand;
-import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.kafka.billing.mappers.BillMapper;
+import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.kafka.billing.mappers.BillRequestedMapper;
 import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.kafka.billing.message.BillRequestedMessage;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -23,7 +23,7 @@ public class BillPublisher implements PublishBillCreated {
 
     @Override
     public void publish(PublishBillCreatedCommand cmd) {
-        BillRequestedMessage billRequestedMessage = BillMapper.toMessage(cmd);
+        BillRequestedMessage billRequestedMessage = BillRequestedMapper.toMessage(cmd);
         try {
             byte[] eventBytes = objectMapper.writeValueAsBytes(billRequestedMessage);
 

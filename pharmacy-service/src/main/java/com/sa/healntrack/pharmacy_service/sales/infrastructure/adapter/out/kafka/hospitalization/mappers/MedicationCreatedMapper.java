@@ -5,7 +5,7 @@ import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.kafka
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class MedicationMapper {
+public class MedicationCreatedMapper {
     public MedicationCreatedMessage toMessage(
             PublishMedicationCreatedCommand cmd
     ) {

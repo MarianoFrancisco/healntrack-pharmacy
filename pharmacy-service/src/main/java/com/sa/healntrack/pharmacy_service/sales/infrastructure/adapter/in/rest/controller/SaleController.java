@@ -1,7 +1,5 @@
 package com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.in.rest.controller;
 
-import com.sa.healntrack.pharmacy_service.sales.application.port.in.complete_sale.CompleteSale;
-import com.sa.healntrack.pharmacy_service.sales.application.port.in.complete_sale.CompleteSaleCommand;
 import com.sa.healntrack.pharmacy_service.sales.application.port.in.create_sale.CreateSale;
 import com.sa.healntrack.pharmacy_service.sales.application.port.in.get_all_sales.GetAllSales;
 import com.sa.healntrack.pharmacy_service.sales.application.port.in.get_all_sales.GetAllSalesQuery;
@@ -28,19 +26,12 @@ public class SaleController {
     private final CreateSale createSale;
     private final GetSaleById getSaleById;
     private final GetAllSales getAllSales;
-    private final CompleteSale completeSale;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public SaleResponseDTO create(@Valid @RequestBody CreateSaleDTO dto) {
         Sale saved = createSale.handle(SaleRestMapper.toCommand(dto));
         return SaleRestMapper.toResponse(saved);
-    }
-
-    @PostMapping("/{id}:complete")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void complete(@PathVariable UUID id) {
-        completeSale.handle(new CompleteSaleCommand(id));
     }
 
     @GetMapping("/{id}")

@@ -6,7 +6,7 @@ import com.sa.healntrack.pharmacy_service.sales.infrastructure.adapter.out.kafka
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class BillMapper {
+public class BillRequestedMapper {
 
     public BillRequestedMessage toMessage(PublishBillCreatedCommand command) {
         return new BillRequestedMessage(
