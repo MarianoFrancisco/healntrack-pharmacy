@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.UUID;
 
 public record CreateMonthlyClosingDTO(
+
+        @NotNull(message = "El identificador del usuario que realiza el cierre es obligatorio")
         UUID closedBy,
-        @NotNull @Valid List<CreateMonthlyClosingLineDTO> lines
+
+        @NotNull(message = "La lista de líneas del cierre no puede ser nula")
+        @Valid List<CreateMonthlyClosingLineDTO> lines
 ) {
 }
